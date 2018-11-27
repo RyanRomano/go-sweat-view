@@ -11,9 +11,12 @@ export default class SessionsListComponent extends React.Component {
                 {this.props.sessions.map(function (session) {
                     return (
                         <div key={session.id}>
-                            <p>{session.id}</p>
-                            <p>{session.date}</p>
-                            <p>{session.muscles_worked}</p>
+                            {/* https://stackoverflow.com/questions/30115324/pass-props-in-link-react-router */}
+                            {/* <Link to={'/session/'+session.id }>Create Idea</Link> */}
+
+                            <p>Session ID: {session.id}</p>
+                            <p>Session Date: {session.date}</p>
+                            <p>Muscles Worked: {session.muscles_worked}</p>
                         </div>
                     )
                 })}
