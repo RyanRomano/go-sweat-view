@@ -12,7 +12,7 @@ const routing = (
             <Switch>
                 <Route exact path="/" component={HomePage}/>
                 <Route path="/sessions" component={AllSessionsPage}/>
-                <Route path="/new-session" component={NewSession}/>
+                <Route path="/new-session" component={NewSessionPage}/>
             </Switch>
         </div>
     </Router>
