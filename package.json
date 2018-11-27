@@ -16,5 +16,17 @@
   "bugs": {
     "url": "https://github.com/RyanRomano/go-sweat-view/issues"
   },
-  "homepage": "https://github.com/RyanRomano/go-sweat-view#readme"
+  "homepage": "https://github.com/RyanRomano/go-sweat-view#readme",
+  "dependencies": {
+    "react": "^16.6.3",
+    "react-router-dom": "^4.3.1",
+    "router": "^1.3.3"
+  },
+
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
+  }
 }
