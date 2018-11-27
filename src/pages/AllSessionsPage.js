@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import SessionsListComponent from '../components/SessionsListComponent';
 
 export default class AllSessionsPage extends React.Component {
@@ -30,7 +31,7 @@ export default class AllSessionsPage extends React.Component {
     render() {
         return(
             <div>
-                {/* // <NewSessionButtonComponent/> or something */}
+                <Link to="/new-session">New Session</Link>
                 <h1>All sessions</h1>
                 <SessionsListComponent sessions={this.state.sessions}/>
             </div>
