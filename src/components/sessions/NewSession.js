@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class NewSessionComponent extends React.Component {
+export default class NewSession extends React.Component {
 
     constructor(props) {
         super(props);
@@ -32,14 +32,17 @@ export default class NewSessionComponent extends React.Component {
     
     render() {
         return (
-        <form onSubmit={this.handleSubmit}>
-            <label>
-                <p>What do you want to work on today?</p>
-                <br/>
-                <input type="text" value={this.state.muscle} onChange={this.handleChange} />
-            </label>
-            <input type="submit" value="Submit" />
-        </form>
+        <div>
+            <h2>Create a new session!</h2>
+            <form onSubmit={this.handleSubmit}>
+                <label>
+                    <p>What do you want to work on today?</p>
+                    <br/>
+                    <input type="text" value={this.state.muscle} onChange={this.handleChange} />
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
         );
     }
 }

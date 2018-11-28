@@ -1,7 +1,7 @@
 import React from 'react';
-import WorkoutListComponent from '../components/WorkoutListComponent';
-export default class SessionPage extends React.Component {
+import WorkoutList from '../workouts/WorkoutList';
 
+export default class Session extends React.Component {
 
     constructor(props){
         super(props);
@@ -29,7 +29,9 @@ export default class SessionPage extends React.Component {
     render() {
         return(
             <div>
-                <WorkoutListComponent workouts={this.state.workouts}/>
+                <h2>Session ID:</h2>
+                <button>Add a new Workout</button>
+                <WorkoutList workouts={this.state.workouts}/>
             </div>
         )
     }
