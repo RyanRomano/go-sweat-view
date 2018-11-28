@@ -7,6 +7,7 @@ export default class Session extends React.Component {
         super(props);
         this.state = {
             workouts: [],
+            date: null
         }
     }
 
@@ -14,13 +15,14 @@ export default class Session extends React.Component {
         this.fetchWorkouts();
     }
 
+
     fetchWorkouts = () => {
-        let id = this.props.match.params.id;
-        fetch(`http://localhost:3000/sessions/${id}/workouts`)
+        fetch(`http://localhost:3000/sessions/${this.props.match.params.id}/workouts`)
         .then(response => response.json())
         .then(json => {
             json.forEach(workout => {
                 this.setState({ workouts: [...this.state.workouts, workout] });
+                this.setState({ date: workout.date });
             });
         })
         .catch(error => console.error(error));
@@ -29,7 +31,7 @@ export default class Session extends React.Component {
     render() {
         return(
             <div>
-                <h2>Session ID:</h2>
+                <h2>Session ID: {this.state.date}</h2>
                 <button>Add a new Workout</button>
                 <WorkoutList workouts={this.state.workouts}/>
             </div>

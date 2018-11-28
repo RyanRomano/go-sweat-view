@@ -25,16 +25,3 @@ export default class WorkoutList extends React.Component {
         )
     }
 }
-
-// {id: 4, session_id: 1, date: "2011-07-01T10:30:30.000Z", exercise_name: "Leg Press", equipment_type: "Machine", …}
-// date: "2011-07-01T10:30:30.000Z"
-// equipment_type: "Machine"
-// exercise_name: "Leg Press"
-// id: 4
-// notes: "Another workout"
-// reps: 69
-// session_id: 1
-// set1: 420
-// set2: 420
-// set3: 420
-// sets: 3
