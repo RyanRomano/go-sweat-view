@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import Session from './Session';
 
 export default class SessionsList extends React.Component {
 
@@ -25,7 +26,6 @@ export default class SessionsList extends React.Component {
         .catch(error => console.error(error));
     }
 
-
     render() {
         return(
             <div>
@@ -34,15 +34,7 @@ export default class SessionsList extends React.Component {
 
                 {this.state.sessions.map(function (session) {
                     return (
-                        <div key={session.id}>
-                            {/* https://stackoverflow.com/questions/30115324/pass-props-in-link-react-router */}
-                            {/* <Link to={'/session/'+session.id }>Create Idea</Link> */}
-
-                            <p>Session ID: {session.id}</p>
-                            <p>Session Date: {session.date}</p>
-                            <p>Muscles Worked: {session.muscles_worked}</p>
-                            <hr/>
-                        </div>
+                        <Session key={session.id} sessionData={session}/>
                     )
                 })}
             </div>
