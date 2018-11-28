@@ -17,6 +17,7 @@ export default class SessionsListComponent extends React.Component {
                             <p>Session ID: {session.id}</p>
                             <p>Session Date: {session.date}</p>
                             <p>Muscles Worked: {session.muscles_worked}</p>
+                            <hr/>
                         </div>
                     )
                 })}
