@@ -7,7 +7,6 @@ export default class SessionPage extends React.Component {
         super(props);
         this.state = {
             workouts: [],
-            date: ''
         }
     }
 
@@ -20,7 +19,6 @@ export default class SessionPage extends React.Component {
         fetch(`http://localhost:3000/sessions/${id}/workouts`)
         .then(response => response.json())
         .then(json => {
-            this.setState({date: json[0].date});
             json.forEach(workout => {
                 this.setState({ workouts: [...this.state.workouts, workout] });
             });
@@ -31,7 +29,6 @@ export default class SessionPage extends React.Component {
     render() {
         return(
             <div>
-                <h2>Workout Date: {this.state.date}</h2>
                 <WorkoutListComponent workouts={this.state.workouts}/>
             </div>
         )

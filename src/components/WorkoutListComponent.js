@@ -8,6 +8,7 @@ export default class WorkoutListComponent extends React.Component {
                 {this.props.workouts.map(function (workout) {
                     return (
                         <div key={workout.id}>
+                            <p>{workout.date}</p>
                             <p>Exercise Name: {workout.exercise_name}</p>
                             <p>Equipment type: {workout.equipment_type}</p>
                             <p>Reps: {workout.reps}</p>
