@@ -5,10 +5,19 @@ export default class Session extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            session: null
+            session: {}
         }
     }
 
+    componentDidMount(){
+        this.fetchSession();
+    }
+
+    fetchSession = () => {
+        fetch(`http://localhost:3000/sessions/${this.props.match.params.id}`)
+        .then(response => response.json())
+        .then(json => this.setState({session:json[0]}));
+    }
     // Hit get /session/:id endpoint to get sessionid, date, muscles_worked
 
     // also hit workouts endpoint -> something like /session/{this.state.sessionid}/workouts
@@ -17,9 +26,8 @@ export default class Session extends React.Component {
     render() {
         return(
                 <div>
-                {/* render date here once */}
-                {/* render workoutlist here */}
-                    <p>Hello world + {this.props.match.params.id}</p>
+                    <p>Working out {this.state.session.muscles_worked} on {this.state.session.date}</p>
+                    {/* render workoutlist here */}
                 </div>
         )
     }   
