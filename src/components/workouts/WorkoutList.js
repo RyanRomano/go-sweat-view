@@ -1,4 +1,5 @@
 import React from 'react';
+import WorkoutListItem from './WorkoutListItem';
 
 export default class WorkoutList extends React.Component {
 
@@ -29,19 +30,7 @@ export default class WorkoutList extends React.Component {
             <div>
                 {this.state.workouts.map(function (workout) {
                     return (
-                        <div key={workout.id}>
-                            <p>Exercise Name: {workout.exercise_name}</p>
-                            <p>Equipment type: {workout.equipment_type}</p>
-                            <p>Date: {workout.date}</p>
-                            <p>Reps: {workout.reps}</p>
-                            <p>Set 1: {workout.set1}</p>
-                            <p>Set 2: {workout.set2}</p>
-                            <p>Set 3: {workout.set3}</p>
-                            <p>Notes: {workout.notes}</p>
-                            <button>Edit</button>
-                            <button>Delete</button>
-                            <hr/>
-                        </div>
+                        <WorkoutListItem workoutData={workout}/>
                     )
                 })}
             </div>
