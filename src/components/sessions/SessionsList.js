@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import Session from './Session';
+import SessionsListItem from './SessionsListItem';
 
 export default class SessionsList extends React.Component {
 
@@ -34,7 +34,7 @@ export default class SessionsList extends React.Component {
 
                 {this.state.sessions.map(function (session) {
                     return (
-                        <Session key={session.id} sessionData={session}/>
+                        <SessionsListItem key={session.id} sessionData={session}/>
                     )
                 })}
             </div>

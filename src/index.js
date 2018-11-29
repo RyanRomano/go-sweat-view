@@ -4,7 +4,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 import Home from './components/Home';
 import SessionsList from './components/sessions/SessionsList';
-import WorkoutList from './components/workouts/WorkoutList';
+import Session from './components/sessions/Session';
 import NewSession from './components/sessions/NewSession';
 
 const routing = (
@@ -13,7 +13,7 @@ const routing = (
             <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/sessions" component={SessionsList}/>
-                <Route path="/sessions/:id" component={WorkoutList}/>
+                <Route path="/sessions/:id" component={Session}/>
                 <Route path="/new-session" component={NewSession}/>
             </Switch>
         </div>
