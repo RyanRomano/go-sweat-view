@@ -9,7 +9,6 @@ export default class WorkoutListItem extends React.Component {
             <div key={workout.id}>
                 <p>Exercise Name: {workout.exercise_name}</p>
                 <p>Equipment type: {workout.equipment_type}</p>
-                <p>Date: {workout.date}</p>
                 <p>Reps: {workout.reps}</p>
                 <p>Set 1: {workout.set1}</p>
                 <p>Set 2: {workout.set2}</p>
