@@ -1,34 +1,27 @@
 import React from 'react';
-import WorkoutList from '../workouts/WorkoutList';
-import {Link, BrowserRouter, Route} from 'react-router-dom';
 
 export default class Session extends React.Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+            session: null
+        }
+    }
+
+    // Hit get /session/:id endpoint to get sessionid, date, muscles_worked
+
+    // also hit workouts endpoint -> something like /session/{this.state.sessionid}/workouts
+    // https://stackoverflow.com/questions/49754270/multiple-fetch-requests-with-setstate-in-react
+
     render() {
         return(
-            // <BrowserRouter>
                 <div>
-                    <p>Session ID: {this.props.sessionData.id}</p>
-                    <p>Session Date: {this.props.sessionData.date}</p>
-                    <p>Muscles Worked: {this.props.sessionData.muscles_worked}</p>
-                    <Link to={{ 
-                        pathname: `/sessions/${this.props.sessionData.id}`}}>
-                        View Workouts
-                    </Link>
-                    <hr/>
-                    {/* <Route path={`/sessions/${this.props.sessionData.id}`} component={Home}/> */}
-                    <hr/>
+                {/* render date here once */}
+                {/* render workoutlist here */}
+                    <p>Hello world + {this.props.match.params.id}</p>
                 </div>
-            // </BrowserRouter>
         )
-
-        // function Home() {
-        //     return (
-        //         <div>
-        //             <h2>Home + {this.props.hello}</h2>
-        //         </div>
-        //     );
-        // }
     }   
       
 }
