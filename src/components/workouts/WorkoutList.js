@@ -8,13 +8,11 @@ export default class WorkoutList extends React.Component {
             <div>
                 {this.props.workouts.map(function (workout) {
                     return (
-                        <div key={workout.id}>
                             <WorkoutListItem 
+                                key={workout.id}
                                 workoutData={workout} 
                                 deleteHandler={this.props.deleteHandler}
                             />
-                            <hr/>
-                        </div>
                     )
                 }, this)}
             </div>
