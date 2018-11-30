@@ -1,5 +1,4 @@
 import React from 'react';
-
 import SessionListItem from './SessionListItem';
 
 export default class SessionList extends React.Component {
@@ -57,20 +56,16 @@ export default class SessionList extends React.Component {
 
                 {this.state.sessions.map(session => {
                     return (
-                            <SessionListItem 
-                                key={session.id}
-                                sessionData={session} 
-                                deleteHandler={this.deleteSession} 
-                                editHandler={this.redirectToEditSession} 
-                                viewHandler={this.viewSession}
-                            />
+                        <SessionListItem 
+                            key={session.id}
+                            sessionData={session} 
+                            deleteHandler={this.deleteSession} 
+                            editHandler={this.redirectToEditSession} 
+                            viewHandler={this.viewSession}
+                        />
                     )
                 })}
             </div>
         )
     }
 }
-
-
-
-
