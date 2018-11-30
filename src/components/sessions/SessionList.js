@@ -46,18 +46,15 @@ export default class SessionList extends React.Component {
     }
 
     render() {
-        let history = this.props.history;
-
         return(
             <div>
                 <h2>Hello world - All Sessions</h2>
                 <button onClick={ () => this.redirectToNewSession()}>New Session</button>
-
                 <hr/>
                 {this.state.sessions.map(session => {
                     return (
                         <div key={session.id}>
-                            <SessionListItem sessionData={session} history={history}/>
+                            <SessionListItem sessionData={session}/>
                             <Link to={`/sessions/${session.id}`}>View Workouts</Link>
                             <button onClick={() => this.redirectToEditSession(session.id)}> Edit</button>
                             <button onClick={() => this.deleteSession(session.id)}>Delete</button>
