@@ -25,7 +25,7 @@ export default class Session extends React.Component {
     fetchWorkouts = () => {
         fetch(`http://localhost:3000/sessions/${this.props.match.params.id}/workouts`)
         .then(response => response.json())
-        .then(json => 
+        .then(json =>
             json.forEach(workout => {
                 this.setState({ workouts: [...this.state.workouts, workout] });
             })
@@ -36,8 +36,11 @@ export default class Session extends React.Component {
         this.props.history.push(`/sessions/${this.props.match.params.id}/new`);
     }
 
-    redirectToEditWorkout = (id) => {
-        this.props.history.push(`/sessions/${this.state.session.id}/workouts/${id}/edit`);
+    redirectToEditWorkout = (id, data) => {
+        this.props.history.push({
+            pathname:`/sessions/${this.state.session.id}/workouts/${id}/edit`,
+            state: data
+        });
     }
 
     deleteWorkout = (id) => {
