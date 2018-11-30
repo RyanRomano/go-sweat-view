@@ -17,7 +17,7 @@ const routing = (
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/sessions" component={SessionList}/>
                 <Route exact path="/sessions/:id" component={Session}/>
-                <Route path="/sessions/:id/workouts/:workoutid/edit"/> 
+                <Route path="/sessions/:id/workouts/:workoutid/edit" component={EditWorkout}/> 
                 <Route path="/sessions/:id/new" component={NewWorkout}/>
                 <Route path="/new-session" component={NewSession}/>
                 <Route path="/sessions/:id/edit" component={EditSession}/>

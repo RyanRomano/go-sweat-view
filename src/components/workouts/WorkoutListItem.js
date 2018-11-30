@@ -14,7 +14,7 @@ export default class WorkoutListItem extends React.Component {
                 <p>Set 2: {workout.set2}</p>
                 <p>Set 3: {workout.set3}</p>
                 <p>Notes: {workout.notes}</p>
-                <button>Edit</button>
+                <button onClick={() => this.props.editHandler(workout.id)}>Edit</button>
                 <button onClick={() => this.props.deleteHandler(workout.id)}>Delete</button>
                 <hr/>
             </div>        

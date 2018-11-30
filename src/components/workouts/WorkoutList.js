@@ -9,9 +9,10 @@ export default class WorkoutList extends React.Component {
                 {this.props.workouts.map(function (workout) {
                     return (
                             <WorkoutListItem 
-                                key={workout.id}
+                                key={workout.id} 
                                 workoutData={workout} 
-                                deleteHandler={this.props.deleteHandler}
+                                deleteHandler={this.props.deleteHandler} 
+                                editHandler={this.props.editHandler}
                             />
                     )
                 }, this)}
