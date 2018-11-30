@@ -36,6 +36,10 @@ export default class Session extends React.Component {
         this.props.history.push(`/sessions/${this.props.match.params.id}/new`);
     }
 
+    redirectToEditWorkout = (id) => {
+        this.props.history.push(`/sessions/${this.state.session.id}/workouts/${id}/edit`);
+    }
+
     deleteWorkout = (id) => {
         fetch(`http://localhost:3000/workouts/${id}`, {
             method: 'delete'
@@ -54,7 +58,8 @@ export default class Session extends React.Component {
                     <hr/>
                     <WorkoutList 
                         workouts={this.state.workouts} 
-                        deleteHandler={this.deleteWorkout}
+                        deleteHandler={this.deleteWorkout} 
+                        editHandler={this.redirectToEditWorkout}
                     />
                 </div>
         )
