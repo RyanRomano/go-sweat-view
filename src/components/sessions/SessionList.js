@@ -26,11 +26,15 @@ export default class SessionList extends React.Component {
         .catch(error => console.error(error));
     }
 
+    redirectToNewSession = () => {
+        this.props.history.push(`/new-session`);
+    }
+
     render() {
         return(
             <div>
                 <h2>Hello world - All Sessions</h2>
-                <Link to="/new-session">New Session</Link>
+                <button onClick={ () => this.redirectToNewSession()}>New Session</button>
 
                 {this.state.sessions.map(function (session) {
                     return (
