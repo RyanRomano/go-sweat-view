@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import SessionListItem from './SessionListItem';
 
 export default class SessionList extends React.Component {
@@ -31,20 +30,16 @@ export default class SessionList extends React.Component {
     }
 
     render() {
+        let history = this.props.history;
         return(
             <div>
                 <h2>Hello world - All Sessions</h2>
                 <button onClick={ () => this.redirectToNewSession()}>New Session</button>
+
                 <hr/>
                 {this.state.sessions.map(function (session) {
                     return (
-                        <div key={session.id}>
-                            <SessionListItem sessionData={session}/>
-                            <Link to={`/sessions/${session.id}`}>View Workouts</Link>
-                            <button>Edit</button>
-                            <button>Delete</button>
-                            <hr/>
-                        </div>
+                            <SessionListItem key={session.id} sessionData={session} history={history}/>
                     )
                 })}
             </div>

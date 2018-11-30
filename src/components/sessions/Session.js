@@ -37,7 +37,7 @@ export default class Session extends React.Component {
     // also hit workouts endpoint -> something like /session/{this.state.sessionid}/workouts
     // https://stackoverflow.com/questions/49754270/multiple-fetch-requests-with-setstate-in-react
 
-    redirect = () => {
+    redirectToNewWorkout = () => {
         this.props.history.push(`/sessions/${this.props.match.params.id}/new`);
     }
 
@@ -45,7 +45,7 @@ export default class Session extends React.Component {
         return(
                 <div>
                     <h2>Working out {this.state.session.muscles_worked} on {this.state.session.date}</h2>
-                    <button onClick={ () => this.redirect()}>Add a Workout</button>
+                    <button onClick={ () => this.redirectToNewWorkout()}>Add a Workout</button>
                     <hr/>
                     
                     {this.state.workouts.map(function (workout) {
