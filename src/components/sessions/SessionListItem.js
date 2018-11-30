@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 
 export default class SessionListItem extends React.Component {
 
@@ -10,9 +9,6 @@ export default class SessionListItem extends React.Component {
                 <p>Session ID: {session.id}</p>
                 <p>Session Date: {session.date}</p>
                 <p>Muscles Worked: {session.muscles_worked}</p>
-                <Link to={`/sessions/${session.id}`}>
-                    View Workouts
-                </Link>
             </div>
         )
     }
