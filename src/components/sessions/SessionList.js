@@ -38,8 +38,8 @@ export default class SessionList extends React.Component {
                 <hr/>
                 {this.state.sessions.map(function (session) {
                     return (
-                        <div>
-                            <SessionListItem key={session.id} sessionData={session}/>
+                        <div key={session.id}>
+                            <SessionListItem sessionData={session}/>
                             <Link to={`/sessions/${session.id}`}>View Workouts</Link>
                             <button>Edit</button>
                             <button>Delete</button>
