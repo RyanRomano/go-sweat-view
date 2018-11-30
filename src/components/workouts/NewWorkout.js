@@ -18,23 +18,32 @@ export default class NewWorkout extends React.Component {
     }
     
     handleChange = (event) => {
-        this.setState({ [evt.target.name]: evt.target.value });
+        this.setState({ [event.target.name]: event.target.value });
     }
     
     handleSubmit = (event) => {
-        // const data = {
-        //     "newWorkout":this.state.newWorkout
-        // }
 
-        // fetch(`http://localhost:3000/sessions/`, {
-        //     method: 'post',
-        //     headers: {'Content-Type':'application/json'},
-        //     body: JSON.stringify(data)
-        // })
-        // .then(window.location.href = `http://localhost:1234/sessions/${this.props.match.params.id}/workouts`)
-        // .catch(error => console.error(error)); 
+        const newWorkout = {
+            session_id: this.state.session_id,
+            exercise_id: this.state.exercise_id,
+            equipment_id: this.state.equipment_id,
+            sets: this.state.sets,
+            reps: this.state.reps,
+            set1: this.state.set1,
+            set2: this.state.set2,
+            set3: this.state.set3,
+            notes: this.state.notes
+        }
 
-        console.log('Hello world');
+        fetch(`http://localhost:3000/workouts/`, {
+            method: 'post',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(newWorkout)
+        })
+        .then(window.location.href = `http://localhost:1234/sessions/${this.props.match.params.id}`)
+        .catch(error => console.error(error)); 
+
+        console.log(newWorkout);
         event.preventDefault();
 
     }

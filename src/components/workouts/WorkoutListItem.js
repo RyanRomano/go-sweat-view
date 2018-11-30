@@ -7,6 +7,7 @@ export default class WorkoutListItem extends React.Component {
         return (
 
             <div key={workout.id}>
+                <p>Workout ID: {workout.id}</p>
                 <p>Exercise Name: {workout.exercise_name}</p>
                 <p>Equipment type: {workout.equipment_type}</p>
                 <p>Reps: {workout.reps}</p>
