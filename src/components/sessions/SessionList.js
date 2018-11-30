@@ -37,6 +37,8 @@ export default class SessionList extends React.Component {
             this.setState({sessions: this.state.sessions.filter(session => session.id !== id)})
         )
         .catch(error => console.error(error));
+        // TODO
+        // Must also delete all workouts where ID = session_id
     }
     
     viewSession = (id) => {
