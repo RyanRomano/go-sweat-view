@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 
 import SessionListItem from './SessionListItem';
 
@@ -40,6 +39,10 @@ export default class SessionList extends React.Component {
         )
         .catch(error => console.error(error));
     }
+    
+    viewSession = (id) => {
+        this.props.history.push(`/sessions/${id}`);
+    }
 
     redirectToEditSession = (id) => {
         this.props.history.push(`/sessions/${id}/edit`);
@@ -48,21 +51,26 @@ export default class SessionList extends React.Component {
     render() {
         return(
             <div>
-                <h2>Hello world - All Sessions</h2>
-                <button onClick={ () => this.redirectToNewSession()}>New Session</button>
+                <h2>All Sessions</h2>
+                <button onClick={() => this.redirectToNewSession()}>New Session</button>
                 <hr/>
+
                 {this.state.sessions.map(session => {
                     return (
-                        <div key={session.id}>
-                            <SessionListItem sessionData={session}/>
-                            <Link to={`/sessions/${session.id}`}>View Workouts</Link>
-                            <button onClick={() => this.redirectToEditSession(session.id)}> Edit</button>
-                            <button onClick={() => this.deleteSession(session.id)}>Delete</button>
-                            <hr/>
-                        </div>
+                            <SessionListItem 
+                                key={session.id}
+                                sessionData={session} 
+                                deleteHandler={this.deleteSession} 
+                                editHandler={this.redirectToEditSession} 
+                                viewHandler={this.viewSession}
+                            />
                     )
                 })}
             </div>
         )
     }
 }
+
+
+
+
