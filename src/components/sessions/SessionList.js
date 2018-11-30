@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import SessionListItem from './SessionListItem';
 
 export default class SessionList extends React.Component {
