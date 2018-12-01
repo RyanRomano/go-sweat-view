@@ -8,7 +8,7 @@ export default class NewWorkout extends React.Component {
             session_id: this.props.match.params.id,
             exercise_id: 0,
             equipment_id: 0,
-            sets: 0,
+            sets: 3,
             reps: 0,
             set1: 0,
             set2: 0,
@@ -61,7 +61,7 @@ export default class NewWorkout extends React.Component {
                     <input type="text" name="equipment_id" onChange={this.handleChange} />
                 </label><br/>
                 <label>Number of Sets
-                    <input type="text" name="sets" value={3} onChange={this.handleChange} />
+                    <input type="text" name="sets" defaultValue={3} onChange={this.handleChange} />
                 </label><br/>
                 <label>Number of Reps
                     <input type="text" name="reps" onChange={this.handleChange} />

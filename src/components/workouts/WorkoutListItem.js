@@ -25,6 +25,7 @@ export default class WorkoutListItem extends React.Component {
                 <p>Exercise ID: {workout.exercise_id}</p>
                 <p>Equipment type: {workout.equipment_type}</p>
                 <p>Equipment ID: {workout.equipment_id}</p>
+                <p>Sets: {workout.sets}</p>
                 <p>Reps: {workout.reps}</p>
                 <p>Set 1: {workout.set1}</p>
                 <p>Set 2: {workout.set2}</p>
