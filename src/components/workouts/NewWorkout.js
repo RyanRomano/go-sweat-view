@@ -40,7 +40,7 @@ export default class NewWorkout extends React.Component {
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(newWorkout)
         })
-        .then(window.location.href = `http://localhost:1234/sessions/${this.props.match.params.id}`)
+        .then(window.location.href = `http://localhost:1234/sessions/${this.state.session_id}`)
         .catch(error => console.error(error)); 
 
         console.log(newWorkout);

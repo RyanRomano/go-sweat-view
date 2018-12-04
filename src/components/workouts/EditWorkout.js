@@ -14,6 +14,8 @@ export default class EditWorkout extends React.Component {
             set3: this.props.location.state.set3,
             notes: this.props.location.state.notes
         };
+        this.workout_id = this.props.match.params.workoutid;
+        this.session_id = this.props.match.params.id;
     }
     
     handleChange = (event) => {
@@ -22,18 +24,18 @@ export default class EditWorkout extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        fetch(`http://localhost:3000/workouts/${this.props.match.params.workoutid}`, {
+        fetch(`http://localhost:3000/workouts/${this.workout_id}`, {
             method: 'put',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(this.state)
-        }).then(window.location.href = `http://localhost:1234/sessions/${this.props.match.params.id}`)
+        }).then(window.location.href = `http://localhost:1234/sessions/${this.session_id}`)
         .catch(error => console.error(error));
     }
 
     render() {
         return (
             <div>
-                <h2>Edit Workout id:{this.props.match.params.workoutid}</h2>
+                <h2>Edit Workout id:{this.workout_id}</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label>Exercise_ID
                         <input type="text" name="exercise_id" defaultValue={this.state.exercise_id} onChange={this.handleChange} />
