@@ -33,7 +33,7 @@ export default class Session extends React.Component {
     }
 
     redirectToNewWorkout = () => {
-        this.props.history.push(`/sessions/${this.props.match.params.id}/new`);
+        this.props.history.push(`/sessions/${this.state.session.id}/new`);
     }
 
     redirectToEditWorkout = (id, data) => {

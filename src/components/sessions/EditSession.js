@@ -5,6 +5,7 @@ export default class EditSession extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: this.props.match.params.id,
             muscles_worked: this.props.location.state
         };
     }
@@ -15,7 +16,7 @@ export default class EditSession extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        fetch(`http://localhost:3000/sessions/${this.props.match.params.id}`, {
+        fetch(`http://localhost:3000/sessions/${this.state.id}`, {
             method: 'put',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(this.state)
@@ -26,7 +27,7 @@ export default class EditSession extends React.Component {
     render() {
         return (
             <div>
-            <h2>Edit Session id:{this.props.match.params.id}</h2>
+            <h2>Edit Session id:{this.state.id}</h2>
             <form onSubmit={this.handleSubmit}>
                 <label>
                     <input type="text" name="muscles_worked" defaultValue={this.state.muscles_worked} onChange={this.handleChange} />
