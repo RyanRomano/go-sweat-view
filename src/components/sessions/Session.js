@@ -36,12 +36,12 @@ export default class Session extends React.Component {
         this.props.history.push(`/sessions/${this.state.session.id}/new`);
     }
 
-    redirectToEditWorkout = (id, data) => {
-        this.props.history.push({
-            pathname:`/sessions/${this.state.session.id}/workouts/${id}/edit`,
-            state: data
-        });
-    }
+    // redirectToEditWorkout = (id, data) => {
+    //     this.props.history.push({
+    //         pathname:`/sessions/${this.state.session.id}/workouts/${id}/edit`,
+    //         state: data
+    //     });
+    // }
 
     deleteWorkout = (id) => {
         fetch(`http://localhost:3000/workouts/${id}`, {
@@ -62,7 +62,7 @@ export default class Session extends React.Component {
                     <WorkoutList 
                         workouts={this.state.workouts} 
                         deleteHandler={this.deleteWorkout} 
-                        editHandler={this.redirectToEditWorkout}
+                        // editHandler={this.redirectToEditWorkout}
                     />
                 </div>
         )
