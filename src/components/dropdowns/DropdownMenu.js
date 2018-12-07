@@ -21,7 +21,6 @@ export default class DropdownMenu extends React.Component {
                             )
                         }
                     })}
-                    }
                 </select>
             </div>
         )
