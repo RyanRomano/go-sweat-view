@@ -40,7 +40,7 @@ export default class NewWorkout extends React.Component {
     }
 
     fetchEquipment = () => {
-        fetch('http://localhost:3000/exercises')
+        fetch('http://localhost:3000/equipment')
         .then(response => response.json())
         .then(json => {
             json.forEach(equipment => {
@@ -84,14 +84,13 @@ export default class NewWorkout extends React.Component {
         } else if(newWorkout.equipment_id == -1) {
             alert('Please select the type of equipment used!');
         } else {
-            // fetch(`http://localhost:3000/workouts/`, {
-            //     method: 'post',
-            //     headers: {'Content-Type':'application/json'},
-            //     body: JSON.stringify(this.state)
-            // })
-            // .then(window.location.href = `http://localhost:1234/sessions/${this.state.session_id}`)
-            // .catch(error => console.error(error)); 
-            alert(newWorkout);
+            fetch(`http://localhost:3000/workouts/`, {
+                method: 'post',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(newWorkout)
+            })
+            .then(window.location.href = `http://localhost:1234/sessions/${this.state.session_id}`)
+            .catch(error => console.error(error)); 
         }
     }
 

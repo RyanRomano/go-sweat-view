@@ -11,10 +11,17 @@ export default class DropdownMenu extends React.Component {
                 >
                     <option value={-1}>-- Select --</option>
                     {this.props.dropDownItems.map(item => {
-                        return (
-                            <option key={item.id} value={item.id}>{item.exercise_name}</option>
-                        )
+                        if(this.props.identifier == 0) {
+                            return (
+                                <option key={item.id} value={item.id}>{item.exercise_name}</option>
+                            )
+                        } else {
+                            return (
+                                <option key={item.id} value={item.id}>{item.equipment_type}</option>
+                            )
+                        }
                     })}
+                    }
                 </select>
             </div>
         )

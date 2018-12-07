@@ -17,9 +17,6 @@ export default class WorkoutForm extends React.Component {
         const selectedEquipment = workout.equipment_id;
         const equipmentIdentifier = this.props.equipmentDropDownIdentifier;
 
-
-
-
         return(
             <div>
                 <form onSubmit={handleSubmit}>
