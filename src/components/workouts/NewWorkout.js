@@ -16,11 +16,9 @@ export default class NewWorkout extends React.Component {
             set3: null,
             notes: '',
             exercises: [],
-            equipment: []
+            equipment: [],
+            option_group_array: []
         };
-        this.exerciseDropDownIdentifier = 0;
-        this.equipmentDropDownIdentifier = 1;
-
     }
 
     componentDidMount(){
@@ -34,6 +32,16 @@ export default class NewWorkout extends React.Component {
         .then(json => {
             json.forEach(exercise => {
                 this.setState({ exercises: [...this.state.exercises, exercise] });
+
+                if (!this.state.option_group_array.some(group => group.id == exercise.muscle_group_id)) {
+                    let optionGroupData = {
+                        id: exercise.muscle_group_id,
+                        name: exercise.muscle_group
+                    }
+                    this.setState({ 
+                        option_group_array: [...this.state.option_group_array, optionGroupData] 
+                    });
+                }
             });
         })
         .catch(error => console.error(error));
@@ -62,8 +70,8 @@ export default class NewWorkout extends React.Component {
         this.setState({ [event.target.name]: event.target.value });
     }
     
-    handleSubmit = (e) => {
-        e.preventDefault();
+    handleSubmit = (event) => {
+        event.preventDefault();
 
         const newWorkout = {
             session_id: this.state.session_id,
@@ -99,19 +107,12 @@ export default class NewWorkout extends React.Component {
             <div>            
                 <h2>New Workout</h2>
                 <WorkoutForm
-        
                     handleSubmit={this.handleSubmit} 
                     handleTextFieldChange={this.handleTextFieldChange} 
                     handleDropDownChange={this.handleDropDownChange}
-
-                    workoutData={this.state}
-
-                    exerciseDropDownIdentifier={this.exerciseDropDownIdentifier}
-                    equipmentDropDownIdentifier={this.equipmentDropDownIdentifier}
-
+                    formData={this.state}
                 />
             </div>
         )
     }
 }
-              
