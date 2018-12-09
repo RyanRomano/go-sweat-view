@@ -41,22 +41,22 @@ export default class WorkoutForm extends React.Component {
                     </label><br/>
 
                     <label>Number of Sets
-                        <input type="text" name="sets" defaultValue={formData.sets} onChange={handleTextFieldChange}/>
+                        <input type="text" name="sets" value={formData.sets} onChange={handleTextFieldChange}/>
                     </label><br/>
                     <label>Number of Reps
-                        <input type="text" name="reps" defaultValue={formData.reps} onChange={handleTextFieldChange}/>
+                        <input type="text" name="reps" value={formData.reps} onChange={handleTextFieldChange}/>
                     </label><br/>
                     <label>Set 1 weight
-                        <input type="text" name="set1" defaultValue={formData.set1} onChange={handleTextFieldChange}/>
+                        <input type="text" name="set1" value={formData.set1} onChange={handleTextFieldChange}/>
                     </label><br/>
                     <label>Set 2 weight
-                        <input type="text" name="set2" defaultValue={formData.set2} onChange={handleTextFieldChange}/>
+                        <input type="text" name="set2" value={formData.set2} onChange={handleTextFieldChange}/>
                     </label><br/>
                     <label>Set 3 weight
-                        <input type="text" name="set3" defaultValue={formData.set3} onChange={handleTextFieldChange}/>
+                        <input type="text" name="set3" value={formData.set3} onChange={handleTextFieldChange}/>
                     </label><br/>
                     <label>Notes
-                        <input type="text" name="notes" defaultValue={formData.notes} onChange={handleTextFieldChange}/>
+                        <input type="text" name="notes" value={formData.notes} onChange={handleTextFieldChange}/>
                     </label><br/>
                     <input type="submit" value="Submit"/>
                 </form>
