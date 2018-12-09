@@ -45,11 +45,8 @@ export default class SessionList extends React.Component {
         this.props.history.push(`/sessions/${id}`);
     }
 
-    redirectToEditSession = (id,data) => {
-        this.props.history.push({
-            pathname: `/sessions/${id}/edit`,
-            state: data
-        });
+    redirectToEditSession = (id) => {
+        this.props.history.push(`/sessions/${id}/edit`);
     }
 
     render() {

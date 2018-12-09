@@ -6,8 +6,23 @@ export default class EditSession extends React.Component {
         super(props);
         this.state = {
             id: this.props.match.params.id,
-            muscles_worked: this.props.location.state
+            muscles_worked: ''
         };
+    }
+
+    componentDidMount(){
+        this.fetchSession();
+    }
+
+    fetchSession = () => {
+        fetch(`http://localhost:3000/sessions/${this.state.id}`)
+        .then(response => response.json())
+        .then(session => {
+            this.setState({
+                muscles_worked: session[0].muscles_worked
+            })
+        })
+        .catch(error => console.error(error));
     }
     
     handleChange = (event) => {
@@ -30,7 +45,7 @@ export default class EditSession extends React.Component {
             <h2>Edit Session id:{this.state.id}</h2>
             <form onSubmit={this.handleSubmit}>
                 <label>
-                    <input type="text" name="muscles_worked" defaultValue={this.state.muscles_worked} onChange={this.handleChange} />
+                    <input type="text" name="muscles_worked" value={this.state.muscles_worked} onChange={this.handleChange} />
                 </label>
                 <input type="submit" value="Submit" />
             </form>
