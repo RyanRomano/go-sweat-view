@@ -1,7 +1,7 @@
 import React from 'react';
 import WorkoutForm from '../forms/WorkoutForm';
 
-export default class EditWorkout extends React.Component {
+export default class SaveWorkout extends React.Component {
 
     constructor(props) {
         super(props);
@@ -21,11 +21,14 @@ export default class EditWorkout extends React.Component {
             option_group_array: []
         };
     }
-    
+
     componentDidMount(){
-        this.fetchCurrentWorkoutData();
         this.fetchExercises();
         this.fetchEquipment();
+
+        if(this.props.match.url.endsWith('edit')){
+            this.fetchCurrentWorkoutData();
+        }
     }
 
     fetchCurrentWorkoutData = () => {
@@ -44,7 +47,6 @@ export default class EditWorkout extends React.Component {
             });
         })
         .catch(error => console.error(error));
-
     }
 
     fetchExercises = () => {
@@ -86,23 +88,22 @@ export default class EditWorkout extends React.Component {
             this.setState({equipment_id: event.target.value});
         }
     }
-
+    
     handleTextFieldChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     }
-
+    
     handleSubmit = (event) => {
         event.preventDefault();
-    
-        const newWorkout = {
-            exercise_id: this.state.exercise_id,
-            equipment_id: this.state.equipment_id,
-            sets: this.state.sets,
-            reps: this.state.reps,
-            set1: this.state.set1,
-            set2: this.state.set2,
-            set3: this.state.set3,
-            notes: this.state.notes
+        let newWorkout = {
+            exercise_id: parseInt(this.state.exercise_id),
+            equipment_id: parseInt(this.state.equipment_id),
+            sets: parseInt(this.state.sets),
+            reps: parseInt(this.state.reps),
+            set1: parseInt(this.state.set1),
+            set2: parseInt(this.state.set2),
+            set3: parseInt(this.state.set3),
+            notes: this.state.notes,
         }
        
         if(newWorkout.exercise_id == -1 && newWorkout.equipment_id == -1) {
@@ -112,20 +113,34 @@ export default class EditWorkout extends React.Component {
         } else if(newWorkout.equipment_id == -1) {
             alert('Please select the type of equipment used!');
         } else {
-            fetch(`http://localhost:3000/workouts/${this.state.workout_id}`, {
-                method: 'put',
-                headers: {'Content-Type':'application/json'},
-                body: JSON.stringify(newWorkout)
-            })
-            .then(window.location.href = `http://localhost:1234/sessions/${this.state.session_id}`)
-            .catch(error => console.error(error));
+            if(this.props.match.url.endsWith('new')){
+                Object.assign(newWorkout, {session_id: parseInt(this.state.session_id)});
+                fetch(`http://localhost:3000/workouts/`, {
+                    method: 'post',
+                    headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify(newWorkout)
+                })
+                .then(window.location.href = `http://localhost:1234/sessions/${this.state.session_id}`)
+                .catch(error => console.error(error)); 
+                window.location.href = `http://localhost:1234/sessions/${this.state.session_id}`;
+            } else {
+                fetch(`http://localhost:3000/workouts/${this.state.workout_id}`, {
+                    method: 'put',
+                    headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify(newWorkout)
+                })
+                .then(window.location.href = `http://localhost:1234/sessions/${this.state.session_id}`)
+                .catch(error => console.error(error));
+                window.location.href = `http://localhost:1234/sessions/${this.state.session_id}`;
+            }
+           
         }
     }
 
     render() {
         return (
-            <div>
-                <h2>Edit Workout</h2>
+            <div>            
+                <h3>{this.props.match.url.endsWith('new') ? "New Workout" : "Edit Workout"}</h3>
                 <WorkoutForm
                     handleSubmit={this.handleSubmit} 
                     handleTextFieldChange={this.handleTextFieldChange} 
