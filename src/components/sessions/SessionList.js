@@ -26,7 +26,7 @@ export default class SessionList extends React.Component {
     }
 
     redirectToNewSession = () => {
-        this.props.history.push(`/new-session`);
+        this.props.history.push(`/new`);
     }
 
     deleteSession = (id) => {
