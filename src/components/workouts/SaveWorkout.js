@@ -18,7 +18,8 @@ export default class SaveWorkout extends React.Component {
             notes: '',
             exercises: [],
             equipment: [],
-            option_group_array: []
+            option_group_array: [],
+            edit_mode: false
         };
     }
 
@@ -27,6 +28,7 @@ export default class SaveWorkout extends React.Component {
         this.fetchEquipment();
 
         if(this.props.match.url.endsWith('edit')){
+            this.setState({edit_mode: true});
             this.fetchCurrentWorkoutData();
         }
     }
@@ -113,7 +115,7 @@ export default class SaveWorkout extends React.Component {
         } else if(newWorkout.equipment_id == -1) {
             alert('Please select the type of equipment used!');
         } else {
-            if(this.props.match.url.endsWith('new')){
+            if(!this.state.edit_mode){
                 Object.assign(newWorkout, {session_id: parseInt(this.state.session_id)});
                 fetch(`http://localhost:3000/workouts/`, {
                     method: 'post',
@@ -140,7 +142,7 @@ export default class SaveWorkout extends React.Component {
     render() {
         return (
             <div>            
-                <h3>{this.props.match.url.endsWith('new') ? "New Workout" : "Edit Workout"}</h3>
+                <h3>{!this.state.edit_mode ? "New Workout" : "Edit Workout"}</h3>
                 <WorkoutForm
                     handleSubmit={this.handleSubmit} 
                     handleTextFieldChange={this.handleTextFieldChange} 
