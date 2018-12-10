@@ -6,7 +6,6 @@ import Home from './components/Home';
 import SessionList from './components/sessions/SessionList';
 import Session from './components/sessions/Session';
 import SaveSession from './components/sessions/SaveSession';
-// import EditSession from './components/sessions/EditSession';
 import SaveWorkout from './components/workouts/SaveWorkout';
 
 const routing = (
