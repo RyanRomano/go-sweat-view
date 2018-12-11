@@ -1,5 +1,6 @@
 import React from 'react';
 import WorkoutList from '../workouts/WorkoutList';
+import NotFound from '../NotFound';
 
 export default class Session extends React.Component {
     
@@ -7,11 +8,13 @@ export default class Session extends React.Component {
         super(props);
         this.state = {
             session: {},
-            workouts: []
+            workouts: [],
+            isFound: false,
+            errorMessage: `Session ${this.props.match.params.id} not found!`
         }
     }
 
-    componentDidMount(){
+    componentWillMount(){
         this.fetchSession();
         this.fetchWorkouts();
     }
@@ -19,7 +22,14 @@ export default class Session extends React.Component {
     fetchSession = () => {
         fetch(`http://localhost:3000/sessions/${this.props.match.params.id}`)
         .then(response => response.json())
-        .then(json => this.setState({session:json[0]}));
+        .then(json => 
+            {if(json.length > 0){
+                this.setState({
+                    session:json[0],
+                    isFound: true
+                })
+            }}
+        );
     }
 
     fetchWorkouts = () => {
@@ -49,19 +59,25 @@ export default class Session extends React.Component {
         )
         .catch(error => console.error(error));
     }
-
+    
     render() {
-        return(
-                <div>
-                    <h2>Working out {this.state.session.muscles_worked} on {this.state.session.date}</h2>
-                    <button onClick={() => this.redirectToNewWorkout()}>Add a Workout</button>
-                    <hr/>
-                    <WorkoutList 
-                        workouts={this.state.workouts} 
-                        deleteHandler={this.deleteWorkout} 
-                        editHandler={this.redirectToEditWorkout}
-                    />
-                </div>
-        )
-    }   
+        {
+            if(this.state.isFound){
+                return (
+                    <div>
+                        <h2>Working out {this.state.session.muscles_worked} on {this.state.session.date}</h2>
+                        <button onClick={() => this.redirectToNewWorkout()}>Add a Workout</button>
+                        <hr/>
+                        <WorkoutList 
+                            workouts={this.state.workouts} 
+                            deleteHandler={this.deleteWorkout} 
+                            editHandler={this.redirectToEditWorkout}
+                        />
+                    </div>
+                )
+            } else {
+                return <NotFound message={this.state.errorMessage}/>
+            }
+        }
+    }
 }
