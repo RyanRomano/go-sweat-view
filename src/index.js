@@ -7,6 +7,7 @@ import SessionList from './components/sessions/SessionList';
 import Session from './components/sessions/Session';
 import SaveSession from './components/sessions/SaveSession';
 import SaveWorkout from './components/workouts/SaveWorkout';
+import NotFound from './components/NotFound';
 
 const routing = (
     <Router>
@@ -19,6 +20,7 @@ const routing = (
                 <Route path="/sessions/:id/new" component={SaveWorkout}/>
                 <Route path="/new" component={SaveSession}/>
                 <Route path="/sessions/:id/edit" component={SaveSession}/>
+                <Route path="*" component={NotFound}/>
             </Switch>
         </div>
     </Router>
