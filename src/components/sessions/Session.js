@@ -9,8 +9,9 @@ export default class Session extends React.Component {
         this.state = {
             session: {},
             workouts: [],
-            isFound: false,
-            errorMessage: `Session ${this.props.match.params.id} not found!`
+            isError: false,
+            isLoaded: false,
+            errorMessage: ``
         }
     }
 
@@ -21,15 +22,25 @@ export default class Session extends React.Component {
 
     fetchSession = () => {
         fetch(`http://localhost:3000/sessions/${this.props.match.params.id}`)
-        .then(response => response.json())
-        .then(json => 
-            {if(json.length > 0){
-                this.setState({
-                    session:json[0],
-                    isFound: true
-                })
-            }}
-        );
+        .then(response => {
+            if(!response.ok){
+                return response.text().then(Promise.reject.bind(Promise))
+            } else {
+                return response.json();
+            }
+        })
+        .then(json => {
+            this.setState({
+                session:json[0],
+                isLoaded: true
+            })
+        })
+        .catch(error => {
+            this.setState({
+                isError: true,
+                errorMessage: error
+            })
+        })
     }
 
     fetchWorkouts = () => {
@@ -62,7 +73,7 @@ export default class Session extends React.Component {
     
     render() {
         {
-            if(this.state.isFound){
+            if(!this.state.isError && this.state.isLoaded){
                 return (
                     <div>
                         <h2>Working out {this.state.session.muscles_worked} on {this.state.session.date}</h2>
