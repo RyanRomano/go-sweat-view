@@ -30,10 +30,9 @@ export default class Session extends React.Component {
             }
         })
         .then(json => {
-            if(json.length > 0)
-                this.setState({
-                    session:json[0],
-                    isLoaded: true
+            this.setState({
+                session:json[0],
+                isLoaded: true
             })
         })
         .catch(error => {
