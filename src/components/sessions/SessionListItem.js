@@ -1,11 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import '../../styles/sessions/SessionsListItem.css';
 export default class SessionListItem extends React.Component {
 
     render() {
         let session = this.props.sessionData;
         return (
-            <div>
+            <div className="Sessions-list-item">
                 <p>Session ID: {session.id}</p>
                 <p>Session Date: {session.date}</p>
                 <p>Muscles Worked: {session.muscles_worked}</p>
