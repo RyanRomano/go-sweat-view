@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/sessions/SaveSession.css';
 
 export default class SaveSession extends React.Component {
 
@@ -62,7 +63,7 @@ export default class SaveSession extends React.Component {
     
     render() {
         return (
-        <div>
+        <div className="Save-session-container">
             <h3>{!this.state.edit_mode ? "New Session" : "Edit Session"}</h3>
             <form onSubmit={this.handleSubmit}>
                 <label>
