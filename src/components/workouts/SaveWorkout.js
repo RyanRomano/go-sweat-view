@@ -21,6 +21,8 @@ export default class SaveWorkout extends React.Component {
             option_group_array: [],
             edit_mode: false
         };
+        this.db_server = process.env.SERVER;
+        this.client_server = process.env.DEV;
     }
 
     componentDidMount(){
@@ -34,7 +36,7 @@ export default class SaveWorkout extends React.Component {
     }
 
     fetchCurrentWorkoutData = () => {
-        fetch(`http://localhost:3000/workouts/${this.state.workout_id}`)
+        fetch(`http://${this.db_server}/workouts/${this.state.workout_id}`)
         .then(response => response.json())
         .then(workout => {
             this.setState({
@@ -52,7 +54,7 @@ export default class SaveWorkout extends React.Component {
     }
 
     fetchExercises = () => {
-        fetch('http://localhost:3000/exercises')
+        fetch(`http://${this.db_server}/exercises`)
         .then(response => response.json())
         .then(json => {
             json.forEach(exercise => {
@@ -73,7 +75,7 @@ export default class SaveWorkout extends React.Component {
     }
 
     fetchEquipment = () => {
-        fetch('http://localhost:3000/equipment')
+        fetch(`http://${this.db_server}/equipment`)
         .then(response => response.json())
         .then(json => {
             json.forEach(equipment => {
@@ -117,23 +119,21 @@ export default class SaveWorkout extends React.Component {
         } else {
             if(!this.state.edit_mode){
                 Object.assign(newWorkout, {session_id: parseInt(this.state.session_id)});
-                fetch(`http://localhost:3000/workouts/`, {
+                fetch(`http://${this.db_server}/workouts/`, {
                     method: 'post',
                     headers: {'Content-Type':'application/json'},
                     body: JSON.stringify(newWorkout)
                 })
-                .then(window.location.href = `http://localhost:1234/sessions/${this.state.session_id}`)
+                .then(window.location.href = `http://${this.client_server}/sessions/${this.state.session_id}`)
                 .catch(error => console.error(error)); 
-                window.location.href = `http://localhost:1234/sessions/${this.state.session_id}`;
             } else {
-                fetch(`http://localhost:3000/workouts/${this.state.workout_id}`, {
+                fetch(`http://${this.db_server}/workouts/${this.state.workout_id}`, {
                     method: 'put',
                     headers: {'Content-Type':'application/json'},
                     body: JSON.stringify(newWorkout)
                 })
-                .then(window.location.href = `http://localhost:1234/sessions/${this.state.session_id}`)
+                .then(window.location.href = `http://${this.client_server}/sessions/${this.state.session_id}`)
                 .catch(error => console.error(error));
-                window.location.href = `http://localhost:1234/sessions/${this.state.session_id}`;
             }
            
         }

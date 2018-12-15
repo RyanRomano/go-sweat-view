@@ -13,6 +13,8 @@ export default class Session extends React.Component {
             isLoaded: false,
             errorMessage: ``
         }
+        this.db_server = process.env.SERVER;
+        this.client_server = process.env.DEV;
     }
 
     componentWillMount(){
@@ -21,7 +23,7 @@ export default class Session extends React.Component {
     }
 
     fetchSession = () => {
-        fetch(`http://localhost:3000/sessions/${this.props.match.params.id}`)
+        fetch(`http://${this.db_server}/sessions/${this.props.match.params.id}`)
         .then(response => {
             if(!response.ok){
                 return response.text().then(Promise.reject.bind(Promise))
@@ -44,7 +46,7 @@ export default class Session extends React.Component {
     }
 
     fetchWorkouts = () => {
-        fetch(`http://localhost:3000/sessions/${this.props.match.params.id}/workouts`)
+        fetch(`http://${this.db_server}/sessions/${this.props.match.params.id}/workouts`)
         .then(response => response.json())
         .then(json =>
             json.forEach(workout => {
@@ -62,7 +64,7 @@ export default class Session extends React.Component {
     }
 
     deleteWorkout = (id) => {
-        fetch(`http://localhost:3000/workouts/${id}`, {
+        fetch(`http://${this.db_server}/workouts/${id}`, {
             method: 'delete'
         })
         .then(response =>
