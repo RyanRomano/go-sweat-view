@@ -9,6 +9,8 @@ export default class SaveSession extends React.Component {
             muscles_worked: '',
             edit_mode: false
         };
+        this.db_server = process.env.SERVER;
+        this.client_server = process.env.DEV;
     }
 
     componentDidMount(){
@@ -19,7 +21,7 @@ export default class SaveSession extends React.Component {
     }
 
     fetchSession = () => {
-        fetch(`http://localhost:3000/sessions/${this.state.session_id}`)
+        fetch(`http://${this.db_server}/sessions/${this.state.session_id}`)
         .then(response => response.json())
         .then(session => {
             this.setState({
@@ -40,20 +42,20 @@ export default class SaveSession extends React.Component {
         }
         if(!this.state.edit_mode){
             Object.assign(newSession, {date: new Date().toISOString()});
-            fetch(`http://localhost:3000/sessions/`, {
+            fetch(`http://${this.db_server}/sessions/`, {
                 method: 'post',
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify(newSession)
             })
-            .then(window.location.href = "http://localhost:1234/sessions")
+            .then(window.location.href = `http://${this.client_server}/sessions`)
             .catch(error => console.error(error)); 
         } else {
-            fetch(`http://localhost:3000/sessions/${this.state.session_id}`, {
+            fetch(`http://${this.db_server}/sessions/${this.state.session_id}`, {
                 method: 'put',
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify(newSession)
                 })
-            .then(window.location.href = `http://localhost:1234/sessions/`)
+            .then(window.location.href = `http://${this.client_server}/sessions/`)
             .catch(error => console.error(error));
         }
     }

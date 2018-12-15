@@ -8,14 +8,17 @@ export default class SessionList extends React.Component {
         this.state = {
             sessions: []
         }
+        this.db_server = process.env.SERVER;
+        this.client_server = process.env.DEV;
     }
 
     componentDidMount(){
         this.fetchSessions();
+
     }
 
     fetchSessions = () => {
-        fetch('http://localhost:3000/sessions')
+        fetch(`http://${this.db_server}/sessions`)
         .then(response => response.json())
         .then(json => {
             json.forEach(session => {
@@ -30,15 +33,13 @@ export default class SessionList extends React.Component {
     }
 
     deleteSession = (id) => {
-        fetch(`http://localhost:3000/sessions/${id}`, {
+        fetch(`http://${this.db_server}/sessions/${id}`, {
             method: 'delete'
         })
         .then(response =>
             this.setState({sessions: this.state.sessions.filter(session => session.id !== id)})
         )
         .catch(error => console.error(error));
-        // TODO
-        // Must also delete all workouts where ID = session_id
     }
     
     viewSession = (id) => {
