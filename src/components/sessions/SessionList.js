@@ -1,5 +1,6 @@
 import React from 'react';
 import SessionListItem from './SessionListItem';
+import '../../styles/sessions/SessionList.css';
 
 export default class SessionList extends React.Component {
 
