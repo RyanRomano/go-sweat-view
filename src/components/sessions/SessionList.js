@@ -53,9 +53,9 @@ export default class SessionList extends React.Component {
 
     render() {
         return(
-            <div>
-                <h2>All Sessions</h2>
-                <button onClick={() => this.redirectToNewSession()}>New Session</button>
+            <div className="Session-list-container">
+                <h3>All Sessions</h3>
+                <button className="New-session-button" onClick={() => this.redirectToNewSession()}>New Session</button>
                 <hr/>
 
                 {this.state.sessions.map(session => {

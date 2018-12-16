@@ -1,3 +1,12 @@
-body {
+.Session-list-container {
     background-color: lightgrey;
 }
+
+.Session-list-container h3 {
+    color: lightseagreen;
+}
+
+.New-session-button {
+    background: lightcoral;
+}
+
