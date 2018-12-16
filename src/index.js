@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
-
+import './styles/index.css';
 import Home from './components/Home';
 import SessionList from './components/sessions/SessionList';
 import Session from './components/sessions/Session';
